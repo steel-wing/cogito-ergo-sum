@@ -1,0 +1,344 @@
+metadata:
+  engine: 4.1
+  version: 2.0
+  author: Carter Pollan
+  contact: carter.pollan@gmail.com
+
+units:
+  kx: cx
+  ky: cy - 7
+  px: cx - 7
+  py: ky
+  ledy: -cx/2 + 3
+  feet_rad: 3.25
+  feet_offset: 1
+  case_thickness: 1.5
+  case_offset: .05
+  case_trrs: 4
+
+points:
+  zones:
+    matrix:
+      key:
+        padding: cy + 1
+        spread: cx
+      columns:
+        pinky:
+          key:
+            col_net: P017
+        ring:
+          key:
+            splay: -5
+            origin: [-12, -19]
+            stagger: 10
+            col_net: P020
+        middle:
+          key:
+            stagger: 6
+            col_net: P022
+        index:
+          key:
+            stagger: -7
+            col_net: P024
+        inner:
+          key:
+            stagger: -2
+            col_net: P100
+      rows:
+        bottom:
+          row_net: P106
+        home:
+          row_net: P104
+        top:
+          row_net: P011
+    thumbfan:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-7, -19]
+      columns:
+        near:
+          key:
+            col_net: P022
+        home:
+          key:
+            spread: 0
+            splay: -14.5
+            origin: [0, -80]
+            col_net: P024
+        far:
+          key:
+            spread: 0
+            splay: -14.5
+            origin: [0, -80]
+            col_net: P100
+      rows:
+        thumb:
+          row_net: P009
+
+outlines:
+  keys:
+  - what: rectangle
+    where: true
+    size: [16.75, 16.75]
+  board:
+  - what: polygon
+    operation: stack
+    fillet: 3
+    points:
+    - ref: matrix_pinky_top
+      shift: [-px, py]
+    - ref: matrix_ring_top
+      shift: [-cx/2, py]
+    - ref: matrix_middle_top
+      shift: [-cx/2, py]
+    - ref: matrix_middle_top
+      shift: [cx/2, py]
+    - ref: matrix_inner_top
+      shift: [cx/2, py]
+    - ref: matrix_inner_top
+      shift: [cx*4/2 - 5, py]
+    - ref: matrix_inner_bottom
+      shift: [cx*4/2 - 5,-cy/2]
+    - ref: thumbfan_far_thumb
+      shift: [-px+4,px]
+    - ref: thumbfan_far_thumb
+      shift: [px, py]
+    - ref: thumbfan_far_thumb
+      shift: [px, -py]
+    - ref: thumbfan_home_thumb
+      shift: [cy/2, -py]
+    - ref: thumbfan_home_thumb
+      shift: [-cy/2, -py]
+    - ref: thumbfan_near_thumb
+      shift: [cy/2, -py]
+    - ref: thumbfan_near_thumb
+      shift: [-cy/2, -py]
+    - ref: matrix_pinky_bottom
+      shift: [-px, -py]
+  board_outer:
+  - what: polygon
+    operation: stack
+    fillet: 3
+    points:
+    - ref: matrix_pinky_top
+      shift: [-px, py]
+    - ref: matrix_ring_top
+      shift: [-cx/2, py]
+    - ref: matrix_middle_top
+      shift: [-cx/2, py]
+    - ref: matrix_middle_top
+      shift: [cx/2, py]
+    - ref: matrix_inner_top
+      shift: [cx/2 - 24, py + 6]
+    - ref: matrix_inner_top
+      shift: [cx*4/2 - 5, py + 6]
+    - ref: matrix_inner_bottom
+      shift: [cx*4/2 - 5,-cy/2]
+    - ref: thumbfan_far_thumb
+      shift: [-px+4,px]
+    - ref: thumbfan_far_thumb
+      shift: [px, py]
+    - ref: thumbfan_far_thumb
+      shift: [px, -py]
+    - ref: thumbfan_home_thumb
+      shift: [cy/2, -py]
+    - ref: thumbfan_home_thumb
+      shift: [-cy/2, -py]
+    - ref: thumbfan_near_thumb
+      shift: [cy/2, -py]
+    - ref: thumbfan_near_thumb
+      shift: [-cy/2, -py]
+    - ref: matrix_pinky_bottom
+      shift: [-px, -py]
+  faceplateKeys:
+  - what: rectangle
+    where: true
+    size: [14,14]
+  faceplateOutline:
+  - what: polygon
+    operation: stack
+    fillet: 3
+    points:
+    - ref: matrix_pinky_top
+      shift: [-px, py]
+    - ref: matrix_ring_top
+      shift: [-cx/2, py]
+    - ref: matrix_middle_top
+      shift: [-cx/2, py]
+    - ref: matrix_middle_top
+      shift: [cx/2, py]
+    - ref: matrix_inner_top
+      shift: [cx/2, py]
+    - ref: matrix_inner_top
+      shift: [cx/2, py]
+    - ref: matrix_inner_home
+      shift: [cx/2, -10]
+    - ref: matrix_inner_home
+      shift: [cx*4/2 - 5,-10]
+    - ref: matrix_inner_bottom
+      shift: [cx*4/2 - 5,-cy/2]
+    - ref: thumbfan_far_thumb
+      shift: [-px+4,px]
+    - ref: thumbfan_far_thumb
+      shift: [px, py]
+    - ref: thumbfan_far_thumb
+      shift: [px, -py]
+    - ref: thumbfan_home_thumb
+      shift: [cy/2, -py]
+    - ref: thumbfan_home_thumb
+      shift: [-cy/2, -py]
+    - ref: thumbfan_near_thumb
+      shift: [cy/2, -py]
+    - ref: thumbfan_near_thumb
+      shift: [-cy/2, -py]
+    - ref: matrix_pinky_bottom
+      shift: [-px, -py]
+  faceplate:
+  - name: faceplateOutline
+  - operation: subtract
+    name: faceplateKeys
+  microcontroller_cut_out:
+  - what: polygon
+    operation: stack
+    fillet: 3
+    points:
+    - ref: matrix_inner_top
+      shift: [cx*2, py*2]
+    - ref: matrix_inner_top
+      shift: [cx/2, py*2]
+    - ref: matrix_inner_home
+      shift: [cx/2, -10]
+    - ref: matrix_inner_home
+      shift: [cx*4/2, -10]
+  case_inner:
+  - name: board
+    expand: case_offset
+  case_inner_shelf:
+  - name: case_inner
+    expand: -1
+  case_shelf:
+  - name: case_inner
+  - -case_inner_shelf
+  case_outer:
+  - name: board_outer
+    expand: case_offset + case_thickness
+  case_edge:
+  - name: case_outer
+  - -case_inner
+  - -microcontroller_cut_out
+  case_edge_full:
+  - name: case_outer
+  - -case_inner
+  case_feet_one:
+  - what: circle
+    where:
+    - ref: matrix_pinky_top
+      shift: [-cx/2 + feet_offset,cy/2 - feet_offset]
+    radius: feet_rad
+  case_feet_two:
+  - what: circle
+    where:
+    - ref: matrix_middle_top
+      shift: [-cx/2 + feet_offset,cy/2 - feet_offset]
+    radius: feet_rad
+  case_feet_three:
+  - what: circle
+    where:
+    - ref: matrix_inner_top
+      shift: [cx*3/2 + feet_offset,cy/2 - feet_offset + 6]
+    radius: feet_rad
+  case_feet_four:
+  - what: circle
+    where:
+    - ref: thumbfan_far_thumb
+      shift: [cx/2 - feet_offset,cx/2 - feet_offset]
+    radius: feet_rad
+  case_feet_five:
+  - what: circle
+    where:
+    - ref: thumbfan_far_thumb
+      shift: [cx/2 - feet_offset,-cx/2 + feet_offset]
+    radius: feet_rad
+  case_feet_six:
+  - what: circle
+    where:
+    - ref: matrix_pinky_bottom
+      shift: [-cx/2 + feet_offset,-cx/2 + feet_offset]
+    radius: feet_rad
+  case_outer_feet:
+  - name: case_feet_one
+  - +case_feet_two
+  - +case_feet_three
+  - +case_feet_four
+  - +case_feet_five
+  - +case_feet_six
+  test:
+  - name: board_outer
+  - operation: subtract
+    name: board
+
+cases:
+  case:
+  - what: outline
+    name: case_outer
+    extrude: 2
+  - what: outline
+    name: case_edge
+    extrude: 7.8
+  - what: outline
+    name: case_edge_full
+    extrude: 5.7
+  - what: outline
+    name: case_shelf
+    extrude: 4
+  - what: outline
+    name: case_outer_feet
+    extrude: .5
+    operation: subtract
+  faceplate:
+  - what: outline
+    name: faceplate
+    extrude: 1
+
+pcbs:
+  boardPcb:
+    outlines:
+      main:
+        outline: board
+    footprints:
+      choc_hotswap:
+        what: custom/footprints/choc
+        where: true
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: true
+          traces: true
+          from: "{{col_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: custom/footprints/diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+          tht: false
+        adjust:
+          shift: [6.975552, -4.193342]
+          rotate: 90
+      microcontroller:
+        what: custom/footprints/nice_nano
+        params:
+        where:
+          ref: matrix_inner_top
+          shift: [2*px - 2, -6.5]
+      battery:
+        what: jstph
+        params:
+          side: B
+          pos: BPOS
+          neg: BNEG
+        where:
+          ref: matrix_inner_bottom
+          shift: [28, 0]
+          rotate: 270

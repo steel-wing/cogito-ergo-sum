@@ -307,7 +307,7 @@ pcbs:
         outline: board
     footprints:
       choc_hotswap:
-        what: custom/footprints/choc
+        what: choc
         where: true
         params:
           keycaps: true
@@ -317,7 +317,7 @@ pcbs:
           from: "{{col_net}}"
           to: "{{colrow}}"
       diode:
-        what: custom/footprints/diode
+        what: diode
         where: true
         params:
           from: "{{colrow}}"
@@ -327,11 +327,20 @@ pcbs:
           shift: [6.975552, -4.193342]
           rotate: 90
       microcontroller:
-        what: custom/footprints/nice_nano
-        params:
+        what: seeed_xaio
         where:
           ref: matrix_inner_top
-          shift: [2*px - 2, -6.5]
+          shift: [2*px -2, -.5]
+      microcontroller_battery:
+        what: jstph
+        params:
+          side: F
+          pos: BPOS
+          neg: BNEG
+        where:
+          ref: matrix_inner_home
+          shift: [12.5, 0]
+          rotate: 90
       battery:
         what: jstph
         params:
@@ -339,6 +348,6 @@ pcbs:
           pos: BPOS
           neg: BNEG
         where:
-          ref: matrix_inner_bottom
-          shift: [28, 0]
+          ref: matrix_inner_home
+          shift: [27.5, 0]
           rotate: 270
